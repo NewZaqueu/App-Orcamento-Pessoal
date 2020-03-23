@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- FONTAWESOME -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Load Babel -->
+    <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+    <!-- Your custom script here -->
+    <script src="app.js"></script>
+
+    <title>APP Orçamento Pessoal</title>
+  </head>
+<body class="bg-secondary" onload="carregarListaDespesas()">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+             <!-- LOGO -->
+                <a href="index.html" class="navbar-brand"><img src="logo.png"></a>
+            <!-- MENU HAMBURGUER -->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- NAVEGAÇÃO-->
+            <div class="collapse navbar-collapse" id="nav-toggle">
+                <ul class="navbar-nav mt-2 text-center">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link h3">Cadastro
+                            <span class="badge badge-primary display-2">&#128393;</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="consulta.html" class="nav-link h3 active">Consulta
+                            <span class="badge badge-primary h4">&#128203;</span>
+                        </a></li>
+                </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col my-3 text-center">
+                <h1>Consulte seus gastos</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <select type="text" class="form-control" id="ano">
+                    <option value="">Ano</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select type="text" class="form-control" id="mes">
+                    <option value="">Mês</option>
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <input type="number" min="1" max="31" class="form-control" placeholder="Dia" id="dia" >
+            </div>
+
+            <div class="col-md-6">
+                <select class="form-control" id="tipo" >  
+                    <option value="">Tipo</option>
+                    <option value="1">Alimentação</option>
+                    <option value="2">Educação</option>
+                    <option value="3">Lazer</option>
+                    <option value="4">Saúde</option>
+                    <option value="5">Transporte</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Descrição" id="descricao" >
+            </div>
+            <div class="col-md-4">
+                <input type="number" min="0" class="form-control" placeholder="Valor" id="valor" >
+            </div>
+            <div class="col text-center mt-sm-2">
+                <button type="button" class="btn btn-md btn-primary"
+                onclick="pesquisarDespesa()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+         
+        <div class="row mt-5">
+            <div class="col">
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaDespesas">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalRegistroDespesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title text-danger" id="exampleModalLabel">Erro na Gravação</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+            Verifique o prenchimento de todos os campos.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-modal">Voltar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
