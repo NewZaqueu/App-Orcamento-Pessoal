@@ -2,11 +2,16 @@
 
 <h2>Only localStorage</h2>
 
-Ainda não aprendi nenhuma linguagem ou framework para backend portanto todo o armazenamento de dados nesse aplicativo está sendo gerenciado com as linhas de código JS comando o localstorage do navegador.
+<p>Todo o gerenciamento de dados é feito através do localStorage do navegador. Ainda não aprendi nenhuma linguagem backend, mais já da pra brincar um pouco.</p>
 
 <h2>Criação e consulta de tarefas</h2>
 
-Por se tratar de informações simples e
+<p>No app é possível criar, deletar e filtrar todas as tarefas adicionadas.</p>
+
+<h2>Layout Responsivo</h2>
+
+<p>Todo o layout é adaptavel conforme o dispositivo seja ele Desktop ou mobile. Tudo graças ao Bootstrap.</p>
+
 
 <h3>Layout Mobile</h3>
 <br>
